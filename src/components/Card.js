@@ -1,6 +1,6 @@
 export const Card = () => {
     return (
-        <div class="relative block rounded-xl border w-auto border-gray-100 p-8 shadow-xl">
+        <div class="relative block rounded-xl border border-gray-100 p-8 shadow-xl">
             <span class="absolute right-4 top-4 rounded-full bg-green-100 px-3 py-1.5 text-xs font-medium text-green-600" >4.3</span>
             <div class="mt-4 text-gray-500 sm:pr-8">
                 <svg class="h-8 w-8 sm:h-10 sm:w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
