@@ -3,7 +3,7 @@ import down from '../../assets/down.svg'
 import dateExpand from '../../assets/dateExpand.svg'
 export const CardPatients = () => {
     return (
-        <div className="bg-secondary px-6 py-6 rounded-2xl space-y-4">
+        <div className="bg-secondary px-6 py-6 rounded-2xl space-y-4 shadow-xl">
             
             <div className="flex flex-row justify-between items-center">
                 <span className="text-white font-semibold text-lg">Patients</span>

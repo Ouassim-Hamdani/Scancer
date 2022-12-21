@@ -2,6 +2,7 @@ import { NavBar } from './NavBar';
 import { SideBar } from './SideBar';
 import {CardPatients} from "./dashboard-cards/CardPatients"
 import { CardGender } from './dashboard-cards/CardGender';
+import { CardAnalytics } from './dashboard-cards/CardAnalytics';
 
 let name="Anis ki zabi"
 export const Dashboard = () => {
@@ -14,8 +15,8 @@ export const Dashboard = () => {
             <CardPatients/>
             
             <CardGender className="gender"/>
-            <CardPatients/>
-            <CardPatients/>
+            <CardAnalytics/>
+            
         </div>
         
     </div>
