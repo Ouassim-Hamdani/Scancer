@@ -1,6 +1,7 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import dateExpand from '../../assets/dateExpand.svg'
 import React, { useState, useEffect, useRef } from 'react'
+import { dataAnalytics as data } from "../../constants/constants";
 
 export const CardAnalytics = () => {
     const [height, setHeight] = useState(0)
@@ -12,44 +13,7 @@ export const CardAnalytics = () => {
           setWidth(ref.current.clientWidth)
         })
 
-    const data = [
-        {
-          name: 'Sun',
-          Woman: 4000,
-          Man: 2400,
-        },
-        {
-          name: 'Mon',
-          Woman: 3000,
-          Man: 1398,
-        },
-        {
-          name: 'Tue',
-          Woman: 2000,
-          Man: 2800,
-          amt: 2290,
-        },
-        {
-          name: 'Wed',
-          Woman: 2780,
-          Man: 3908,
-        },
-        {
-          name: 'Thu',
-          Woman: 1890,
-          Man: 4800,
-        },
-        {
-          name: 'Fri',
-          Woman: 2390,
-          Man: 3800,
-        },
-        {
-          name: 'Sat',
-          Woman: 3490,
-          Man: 4300,
-        },
-      ];
+    
 
     return (
         <div className="px-6 py-6 rounded-2xl space-y-4 shadow-2xl border-gray-200 border col-span-2  row-span-1" ref={ref}>
