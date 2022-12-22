@@ -45,3 +45,7 @@ export const dataAnalytics = [
     Man: 4300,
   },
 ];
+
+export const patientsData = [{name:"New",value:13,perc:18,stat:"up"},
+                              {name:"All",value:69,perc:28,stat:"down"},
+                              {name:"Sick",value:29,perc:18,stat:"down"}];
