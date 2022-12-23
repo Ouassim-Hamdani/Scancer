@@ -1,5 +1,8 @@
 import expandIcon from '../assets/expand-icon.svg';
+import "tw-elements"
 import avatar from "../assets/avatar.png"
+import profile from "../assets/profile.svg"
+import logout from "../assets/logout.svg"
 export const NavBar = () => {
     return (
 <header aria-label="Page Header" class="bg-nav nav-header">
@@ -63,17 +66,105 @@ export const NavBar = () => {
             </svg>
             </a>
             <div className="flex gap-4 items-center ">
-                <a href="#" class="block shrink-0">
-                    <span class="sr-only">Profile</span>
-                    <img
-                    alt="Man"
-                    src={avatar}
-                    class="h-10 w-10 rounded-full object-cover"
-                    />
-                </a>
-                <span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">Manel Belghenbour</span></span>
-                <img src={expandIcon} alt="" />
-            </div>
+  <div>
+    <div class="dropdown relative">
+      <a
+        class=" gap-4
+          dropdown-toggle
+          
+          transition
+          duration-150
+          ease-in-out
+          flex
+          items-center
+        "
+        href="#"
+        type="button"
+        id="dropdownMenuButton2"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img alt="Man" src={avatar} class="h-10 w-10 rounded-full object-cover"/>
+        <span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">Manel Belghenbour</span></span>
+
+        <img src={expandIcon} alt="" />
+      </a>
+      <ul
+        class="
+          justify-end
+          dropdown-menu
+          min-w-max
+          absolute
+          bg-white
+          text-base
+          z-50
+          float-right
+          
+          list-none
+          text-center
+          rounded-lg
+          shadow-lg
+          mt-1
+          hidden
+          m-0
+          bg-clip-padding
+          border-none
+        "
+        aria-labelledby="dropdownMenuButton2"
+      >
+        <li>
+          <a
+            class=" 
+              
+              border-b
+              border-gray-400
+              dropdown-item
+              text-md
+              py-2
+              px-4
+              font-normal
+              flex flex-row space-x-3 items-center justify-center
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+            href="#"
+            >
+              <img src={profile} className="w-5 h-5" alt="" />
+              <div className='w-[1px] h-4 bg-gray-600'></div>
+              <span>My profile</span>
+            </a>
+        </li>
+        <li>
+          <a
+            class="
+
+              dropdown-item
+              text-md
+              py-2
+              px-4
+              font-normal
+              flex flex-row space-x-3 items-center 
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-rose-600
+              hover:bg-gray-100
+            "
+            href="#"
+            >
+              <img src={logout} className="w-5 h-5" alt="" />
+              <div className='w-[1px] h-4 bg-rose-400'></div>
+              <span>Log Out</span>
+            </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
             
       </div>
       
