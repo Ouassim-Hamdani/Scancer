@@ -16,7 +16,7 @@ export const Scan = () => {
         <div className='space-y-4 pt-8 h-5/6'>
             <span className="text-gray-900 pl-36 text-3xl font-semibold">Scan</span>
             <div className='flex justify-center items-center h-5/6'>
-                <Notification/>
+                <SaveScan/  >
             </div>
         </div>
         
