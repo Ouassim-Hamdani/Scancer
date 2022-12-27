@@ -1,11 +1,9 @@
 import './App.css';
-import { NavBar } from './components/NavBar';
-import { SideBar } from './components/SideBar';
-import { Dashboard } from './components/Dashboard';
+import {Scan} from "./components/pages/Scan"
 
 function App() {
   return (
-    <Dashboard/>
+    <Scan/>
   );
 }
 
