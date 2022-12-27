@@ -49,3 +49,5 @@ export const dataAnalytics = [
 export const patientsData = [{name:"New",value:13,perc:18,stat:"up"},
                               {name:"All",value:69,perc:28,stat:"down"},
                               {name:"Sick",value:29,perc:18,stat:"down"}];
+
+export const patientsList = [{id:1,name:"Taylor Swift"},{id:1,name:"Queen Swift"},{id:3,name:"Music Industry"}]
