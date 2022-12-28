@@ -5,6 +5,7 @@ const jwt=require('jsonwebtoken')
 
 //jwd token generator
 const createtoken=(_id)=>{
+    //sami and hoummam u have to change process.env.secret_string to any string u want
   return jwt.sign({_id},process.env.secret_string,{expiresIn:'1d'})
 }
 //get all patients 
