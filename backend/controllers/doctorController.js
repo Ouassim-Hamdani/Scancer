@@ -14,9 +14,9 @@ const loginDoctor = async (req, res) => {
     const user = await Doctor.login(email, password)
     const token = createtoken(user._id)
 
-    res.status(200).json({email, token})
+    res.status(200).json({status:'ok',email, token})
   } catch (error) {
-    res.status(400).json({error: error.message})
+    res.status(400).json({status:'err',error: error.message,user:false})
   }
 }
 
