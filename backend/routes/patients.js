@@ -14,15 +14,15 @@ const { protect } = require('../middleware/authMiddleware')
 const router = express.Router()
 
 //get all patients 
-router.get('/',protect,getPatients)
+router.get('/',getPatients)
 
 //get one patient 
-router.get('/:id',protect,getOnePatient)
+router.get('/:id',getOnePatient)
 //create a patient
-router.post('/create',protect,createPatient)
+router.post('/create',createPatient)
 //add new patient (already exists in database)
-router.post('/add',protect,addPatient)
+router.post('/add',addPatient)
 //delete a patient
-router.delete('/:id',protect,deletePatient)
+router.delete('/:id',deletePatient)
 
 module.exports=router  

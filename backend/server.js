@@ -1,7 +1,10 @@
 require('dotenv').config()
 //express app
+
 const express =require('express')
 const app = express()
+const cors = require('cors');
+app.use(cors());
 //omport mongoose
 const mongoose = require('mongoose')
 //import routers 
