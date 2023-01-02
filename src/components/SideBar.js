@@ -14,7 +14,7 @@ export const SideBar = ({page}) => {
                 <div className="circle rounded-full bg-gray-800 absolute top-4 shadow-sm stroke-2 stroke-gray-900  w-12 h-12"></div>                
                 <a href="/"><div className={`${page==="dashboard"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2 flex items-center justify-center p-4`}> <DashboardIcon className="w-6 h-6 icon-dash"/> </div></a>
                 <a href="/patients"><div className={`${page==="patients"?"active":""} circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}> <PatientIcon className="w-6 h-6 icon"/> </div></a>
-                <a href=""><div className={`${page==="messages"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><MessageIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/messages"><div className={`${page==="messages"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><MessageIcon className="w-6 h-6 icon"/></div></a>
                 <a href=""><div className={`${page==="scans"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><ReportIcon className="w-6 h-6 icon"/></div></a>
                 
             </div>
