@@ -1,6 +1,6 @@
 
 import { DataGrid } from '@mui/x-data-grid';
-import {rowsDoctors} from '../../constants/constants'
+import {rowsPatients} from '../../constants/constants'
 import {Box} from '@mui/material';
 
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import { Fragment } from "react";
 import {useState } from "react";
 import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
-export function DoctorsPage() {
+export function AdminPatients() {
 
 const columns = [
   { field: 'id', 
@@ -20,8 +20,8 @@ const columns = [
   align: 'center',
   headerAlign: 'center' },
 
-  { field: 'doctorname',
-  headerName: 'Doctor Name',
+  { field: 'patientname',
+  headerName: 'Patient Name',
   width: 300,
   align: 'center',
   headerAlign: 'center', 
@@ -29,7 +29,7 @@ const columns = [
     return (
       <div className='flex items-center'>
         <img className='object-cover w-8 h-8 rounded-full mr-3' src={params.row.avatar} alt="" />
-        {params.row.doctorname}
+        {params.row.patientname}
       </div>
     )
   } },
@@ -84,7 +84,7 @@ const [showBlur, setShowBlur] = useState(false);
   return (
     <Fragment className="h-screen w-full">
         <NavBar role="admin"/>
-        <SideBar page="doctors" role="admin"/>
+        <SideBar page="patients-admin" role="admin"/>
       <div className='flex justify-center items-center h-2/3 w-11/12'>
         <Box className='h-[70vh] w-full'
         sx={{
@@ -101,7 +101,7 @@ const [showBlur, setShowBlur] = useState(false);
         }}
       >
         <div className='w-full p-4 flex items-center justify-between'>
-          <p className='text-3xl font-semibold'>Doctors</p>
+          <p className='text-3xl font-semibold'>Patients</p>
           <div className='space-x-6 '>
             <Link className='bg-blue-800 text-white p-3 rounded-lg' onClick={() =>
             setShowBlur(true)}>
@@ -115,7 +115,7 @@ const [showBlur, setShowBlur] = useState(false);
         </div>
         
         <DataGrid
-          rows={rowsDoctors}
+          rows={rowsPatients}
           disableSelectionOnClick
           columns={columns}
           pageSize={7}
