@@ -3,6 +3,7 @@ const Patient = require('../models/PatientModel')
 const mongoose = require('mongoose')
 const jwt=require('jsonwebtoken')
 
+
 //jwd token generator
 const createtoken=(_id)=>{
     //sami and hoummam u have to change process.env.secret_string to any string u want
@@ -11,6 +12,8 @@ const createtoken=(_id)=>{
 //get all patients 
 const getPatients=async(req,res)=>{
     const patients=await Doctor.findOne({'firstName':'anis'}).populate('patientsList') //=>req.user:_id ...
+    const results =patients.patientsList
+    console.log('this is a result :'+results.type)
     res.status(200).json(patients.patientsList.reverse())
 }
 //add new patients to patientsList
