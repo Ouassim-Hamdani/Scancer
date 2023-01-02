@@ -9,6 +9,7 @@ import { DoctorsPage } from './components/pages/DoctorsPage';
 import { AdminDashboard } from './components/pages/AdminDashboard';
 import { AdminPatients } from './components/pages/AdminPatients';
 import { PatientPage } from './components/pages/PatientPage';
+import { Login } from './components/pages/Login';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
         <Route path='/admin' element={<AdminDashboard/>}></Route>
         <Route path='/patients-admin' element={<AdminPatients/>}></Route>
         <Route path='/patient/1' element={<PatientPage/>}></Route>
+        <Route path="/login" element={<Login/>}></Route>
       </Routes>
     </Router>
     
