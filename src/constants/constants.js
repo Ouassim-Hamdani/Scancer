@@ -52,4 +52,13 @@ export const patientsData = [{name:"New",value:13,perc:18,stat:"up"},
 
 export const patientsList = [{id:1,name:"Taylor Swift"},{id:1,name:"Queen Swift"},{id:3,name:"Music Industry"}]
 
-export const chatsList = [{id:1,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2},{id:2,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2},{id:3,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2}]
+export const chatsList = [{id:1,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2},
+{id:2,name:"Taylor Swift",msg:"Hold on to the memories",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:3,name:"Lorde",msg:"But I live in a hologram with you!",time:"15:28",avatar:"avatar.png",newMsgs:4},
+{id:4,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:5,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:6,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:7,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:8,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+{id:9,name:"Lana Del Rey",msg:"Dear lord when I get to heaven",time:"15:28",avatar:"avatar.png",newMsgs:0},
+]
