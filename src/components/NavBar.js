@@ -3,7 +3,7 @@ import "tw-elements"
 import avatar from "../assets/avatar.png"
 import profile from "../assets/profile.svg"
 import logout from "../assets/logout.svg"
-export const NavBar = () => {
+export const NavBar = ({role}) => {
     return (
 <header aria-label="Page Header" class="bg-nav nav-header">
   <div class="mx-auto max-w-screen-xl px-4 py-4 sm:px-4 lg:px-4 flex items-center justify-between gap-8">
@@ -85,7 +85,7 @@ export const NavBar = () => {
         aria-expanded="false"
       >
         <img alt="Man" src={avatar} class="h-10 w-10 rounded-full object-cover"/>
-        <span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">Manel Belghenbour</span></span>
+        {role==="admin"?<span className="text-md text-gray-700 font-semibold">Manel Belghenbour</span>:<span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">Manel Belghenbour</span></span>}
 
         <img src={expandIcon} alt="" />
       </a>
