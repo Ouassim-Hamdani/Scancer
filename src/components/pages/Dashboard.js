@@ -9,8 +9,8 @@ export const Dashboard = () => {
   
   return (
     <div className=" bg-white h-screen">
-        <NavBar></NavBar>
-        <SideBar></SideBar>
+        <NavBar ></NavBar>
+        <SideBar page="dashboard"></SideBar>
         <div className='grid grid-cols-4 grid-rows-2 h-2/3  gap-10 items-end ml-36 mt-28 w-5/6'>
             <CardPatients/>
             
