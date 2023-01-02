@@ -51,3 +51,5 @@ export const patientsData = [{name:"New",value:13,perc:18,stat:"up"},
                               {name:"Sick",value:29,perc:18,stat:"down"}];
 
 export const patientsList = [{id:1,name:"Taylor Swift"},{id:1,name:"Queen Swift"},{id:3,name:"Music Industry"}]
+
+export const chatsList = [{id:1,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2},{id:2,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2},{id:3,name:"Taylor Swift",msg:"Somewhere in the haze got a sense....",time:"15:28",avatar:"avatar.png",newMsgs:2}]
