@@ -11,9 +11,9 @@ export const SideBar = ({page,role}) => {
         return(
         <div className="flex flex-col items-center h-full left-0 top-0 z-10 absolute justify-center bg-nav  px-4 space-y-6 py-4">
                 <div className="circle rounded-full bg-gray-800 absolute top-4 shadow-sm stroke-2 stroke-gray-900  w-12 h-12"></div>                
-                <a href="/admin"><div className={`${page==="dashboard-admin"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2 flex items-center justify-center p-4`}> <DashboardIcon className="w-6 h-6 icon-dash"/> </div></a>
-                <a href="/doctors"><div className={`${page==="doctors"?"active":""} circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><DoctorIcon className="w-6 h-6 icon"/></div></a>
-                <a href="/patients-admin"><div className={`${page==="patients-admin"?"active":""}  circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><PatientIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/admin"><div className={`${page==="dashboard-admin"?"active bg-primary":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2 flex items-center justify-center p-4`}> <DashboardIcon className="w-6 h-6 icon-dash"/> </div></a>
+                <a href="/doctors"><div className={`${page==="doctors"?"active bg-primary":""} circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><DoctorIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/patients-admin"><div className={`${page==="patients-admin"?"active bg-primary":""}  circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><PatientIcon className="w-6 h-6 icon"/></div></a>
             </div>
     );
         }
@@ -21,10 +21,10 @@ export const SideBar = ({page,role}) => {
         return (
         <div className="flex flex-col items-center h-full left-0 top-0 z-10 absolute justify-center bg-nav  px-4 space-y-6 py-4">
                 <div className="circle rounded-full bg-gray-800 absolute top-4 shadow-sm stroke-2 stroke-gray-900  w-12 h-12"></div>                
-                <a href="/"><div className={`${page==="dashboard"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2 flex items-center justify-center p-4`}> <DashboardIcon className="w-6 h-6 icon-dash"/> </div></a>
-                <a href="patients"><div className={`${page==="patients"?"active":""} circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><PatientIcon className="w-6 h-6 icon"/></div></a>
-                <a href="/messages"><div className={`${page==="messages"?"active":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><MessageIcon className="w-6 h-6 icon"/></div></a>
-                <a href="/scans"><div className={`${page==="scans"?"active":""} ${role==="admin"?"hidden":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><ReportIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/"><div className={`${page==="dashboard"?"active bg-primary":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2 flex items-center justify-center p-4`}> <DashboardIcon className="w-6 h-6 icon-dash"/> </div></a>
+                <a href="patients"><div className={`${page==="patients"?"active bg-primary":""} circle rounded-full bg-white hover:bg-secondary  transition-all shadow-sm stroke-2 hover:fill-white  flex items-center justify-center p-4`}><PatientIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/messages"><div className={`${page==="messages"?"active bg-primary":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><MessageIcon className="w-6 h-6 icon"/></div></a>
+                <a href="/scans"><div className={`${page==="scans"?"active bg-primary":""} ${role==="admin"?"hidden":""} circle rounded-full bg-white hover:bg-secondary transition-all shadow-sm stroke-2   flex items-center justify-center p-4`}><ReportIcon className="w-6 h-6 icon"/></div></a>
             </div>
     );}
     
