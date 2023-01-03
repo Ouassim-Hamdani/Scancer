@@ -3,22 +3,38 @@ import {rowsReportScan} from '../../constants/constants'
 import {Box} from '@mui/material';
 import {Blur} from '../Blur';
 import { Fragment } from "react";
-import {useState } from "react";
+import {useState ,useEffect} from "react";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Button from '@mui/material/Button';
 import moment from 'moment';
 import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
 export const ScansPage = () => {
+  const [scans, setScans] = useState([
+  ]
+  )
+  useEffect(() => {
+    const fetchData= async () => {
+      const response = await fetch('http://localhost:5000/api/scans')
+      const json = await response.json()
+
+      if (response.ok) {
+        setScans(json)
+      }
+    }
+
+    fetchData()
+  },[])
+
 
 const columns = [
-  { field: 'id', 
+  { field: '_id', 
   headerName: 'No. Scan', 
   width: 160,
   align: 'center',
   headerAlign: 'center' },
 
-  { field: 'patientname',
+  { field: 'patient',
   headerName: 'Patient Name',
   width: 300,
   align: 'center',
@@ -26,8 +42,9 @@ const columns = [
   renderCell: (params)=>{
     return (
       <div className='flex items-center'>
-        <img className='object-cover w-8 h-8 rounded-full mr-3' src={params.row.avatar} alt="" />
-        {params.row.patientname}
+        <img className='object-cover w-8 h-8 rounded-full mr-3' src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+   
+        {params.row.patient.firstName+' '+params.row.patient.familyName}
       </div>
     )
   } },
@@ -41,12 +58,12 @@ const columns = [
   { field: 'date', 
   headerName: 'Date', 
   width: 160,
-  renderCell: params=>moment(params.row.date).format('DD-MM-YYYY'),
+  renderCell: params=>moment(params.row.createdAt).format('DD-MM-YYYY'),
   align: 'center',
   headerAlign: 'center' },
 
-  { field: 'status', 
-  headerName: 'Status',
+  { field: 'result', 
+  headerName: 'Result',
   width: 200,
   align: 'center',
   headerAlign: 'center',
@@ -116,7 +133,8 @@ const [showBlur, setShowBlur] = useState(false);
         </div>
         
         <DataGrid className='pl-4'
-          rows={rowsReportScan}
+          getRowId={(row) => row._id}
+          rows={scans}
           disableSelectionOnClick
           columns={columns}
           pageSize={7}

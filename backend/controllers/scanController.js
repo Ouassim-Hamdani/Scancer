@@ -1,4 +1,6 @@
 const Doctor =require('../models/DoctorModel');
+const Patient =require('../models/PatientModel');
+
 const mongoose = require('mongoose')
 
 
@@ -17,7 +19,13 @@ const createScan= async (req,res)=>{
 
 //get all scans 
 const getScans=async(req,res)=>{
-    const scans=await Doctor.findOne({_id:req.user._id})
+    const scans=await Doctor.findOne({"firstName":"anis"}).populate({
+        path: 'scans',
+        populate: {
+                path: 'patient',
+                model: 'Patient'
+        }
+    })
     res.status(200).json(scans.scans.reverse())
 }
 
