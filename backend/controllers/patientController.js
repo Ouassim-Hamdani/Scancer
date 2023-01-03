@@ -12,8 +12,6 @@ const createtoken=(_id)=>{
 //get all patients 
 const getPatients=async(req,res)=>{
     const patients=await Doctor.findOne({'firstName':'anis'}).populate('patientsList') //=>req.user:_id ...
-    const results =patients.patientsList
-    console.log('this is a result :'+results.type)
     res.status(200).json(patients.patientsList.reverse())
 }
 //add new patients to patientsList

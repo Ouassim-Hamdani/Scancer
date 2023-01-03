@@ -11,10 +11,10 @@ const males =patients.patientsList.filter((patient)=>{
   return false 
 }).length
 
-const maleValue= 100*males/patients.patientsList.length
+const maleValue= (100*males/patients.patientsList.length).toFixed(2)
 const genderData = [
-  { name: 'Female', value:100-maleValue,quantity:patients.patientsList.length-males },
-  { name: 'Male', value: maleValue,quantity:males },
+  { name: 'Female', value:(100-maleValue)*1,quantity:patients.patientsList.length-males },
+  { name: 'Male', value: maleValue* 1,quantity:males },
 ]
 res.status(200).json({genderData})
 }

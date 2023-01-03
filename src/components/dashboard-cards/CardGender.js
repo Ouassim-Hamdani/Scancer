@@ -1,4 +1,4 @@
-  import { genderColors,genderData } from "../../constants/constants";
+  import { genderColors } from "../../constants/constants";
   import { PieChart, Pie,Cell} from 'recharts';
   import React, { useState, useEffect, useRef } from 'react'
   import dateExpand from '../../assets/dateExpand.svg'
@@ -6,11 +6,27 @@
   export const CardGender = () => {
         const [height, setHeight] = useState(0)
         const [width, setWidth] = useState(0)
+        const [genderData, setGender] = useState([
+          { name: 'Female', value: 0,quantity:0 },
+          { name: 'Male', value: 0,quantity:0 },
+        ]
+        )
         const ref = useRef(null)
       
         useEffect(() => {
           setHeight(ref.current.clientHeight)
           setWidth(ref.current.clientWidth)
+          const fetchData= async () => {
+            const response = await fetch('http://localhost:5000/api/dashboard')
+            const json = await response.json()
+      
+            if (response.ok) {
+              setGender(json.genderData)
+            }
+          }
+      
+          fetchData()
+          console.log(genderData)
         })
 
     
@@ -35,7 +51,7 @@
                 paddingAngle={5}
                 dataKey="value"
                   >
-                {genderData.map((entry, index) => (
+                {genderData && genderData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={genderColors[index % genderColors.length]} />
                 ))}
                 </Pie>
@@ -48,14 +64,14 @@
                         <div className="circle-gender bg-[#3AC281] w-4 h-4 rounded-full"></div>
                         <span className="text-gray-600">Woman</span>
                       </div>
-                      <span className="pl-6 text-gray-600">{genderData[0].value}% <span className="text-gray-400">({genderData[0].quantity})</span></span>
+                      <span className="pl-6 text-gray-600">{genderData && genderData[0].value}% <span className="text-gray-400">({genderData &&genderData[0].quantity})</span></span>
                   </div>
                   <div className="flex flex-col">
                       <div className="flex flex-row space-x-2 items-center">
                         <div className="circle-gender bg-primary w-4 h-4 rounded-full"></div>
                         <span className="text-gray-600">Man</span>
                       </div>
-                      <span className="pl-6 text-gray-600">{genderData[1].value}% <span className="text-gray-400">({genderData[1].quantity})</span></span>
+                      <span className="pl-6 text-gray-600">{genderData &&genderData[1].value}% <span className="text-gray-400">({genderData &&genderData[1].quantity})</span></span>
                   </div>
           </div>
         </div>

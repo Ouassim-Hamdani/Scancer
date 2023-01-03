@@ -37,7 +37,8 @@ const PatientSchema = new Schema({
         type: String,
         required: [true, 'Please add a password'],
       },
-    birthDate:Date,
+    birthDate:{type:Date,
+      required:true,},
    
     gender:{
         type :String,
