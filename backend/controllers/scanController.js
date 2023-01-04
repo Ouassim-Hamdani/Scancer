@@ -9,7 +9,7 @@ const createScan= async (req,res)=>{
     const {result,file,comment,patient}=req.body
      
     try{  
-        const scan=await Doctor.updateOne({'firstName':'anis'},{ $push: { scans: {patient:patient,result: result ,file:file,comment:comment}}})
+        const scan=await Doctor.updateOne({_id:req.user._id},{ $push: { scans: {patient:patient,result: result ,file:file,comment:comment}}})
         res.status(200).json(scan)
     }catch(err){
         res.status(400).json({msg:err.message})
@@ -19,7 +19,7 @@ const createScan= async (req,res)=>{
 
 //get all scans 
 const getScans=async(req,res)=>{
-    const scans=await Doctor.findOne({"firstName":"anis"}).populate({
+    const scans=await Doctor.findOne({_id:req.user._id}).populate({
         path: 'scans',
         populate: {
                 path: 'patient',

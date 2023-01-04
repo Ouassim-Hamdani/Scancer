@@ -39,7 +39,7 @@ const PatientSchema = new Schema({
       },
     birthDate:{type:Date,
       required:true,},
-   
+
     gender:{
         type :String,
         required: true,

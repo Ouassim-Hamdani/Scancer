@@ -2,8 +2,9 @@
   import { PieChart, Pie,Cell} from 'recharts';
   import React, { useState, useEffect, useRef } from 'react'
   import dateExpand from '../../assets/dateExpand.svg'
-
+  import { useAuthContext } from "../../hooks/useAuthContext"
   export const CardGender = () => {
+        const {user} = useAuthContext()
         const [height, setHeight] = useState(0)
         const [width, setWidth] = useState(0)
         const [genderData, setGender] = useState([
@@ -12,22 +13,26 @@
         ]
         )
         const ref = useRef(null)
-      
+        if (user){
+          console.log(user)
+        }
         useEffect(() => {
           setHeight(ref.current.clientHeight)
           setWidth(ref.current.clientWidth)
           const fetchData= async () => {
-            const response = await fetch('http://localhost:5000/api/dashboard')
+            const response = await fetch('http://localhost:5000/api/dashboard',{
+              headers: {'Authorization': `Bearer ${user.token}`},
+            })
             const json = await response.json()
       
             if (response.ok) {
               setGender(json.genderData)
             }
           }
-      
-          fetchData()
+          if (user){
+          fetchData()}
           console.log(genderData)
-        })
+        },[user,genderData])
 
     
     return (

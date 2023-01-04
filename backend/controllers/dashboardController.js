@@ -3,7 +3,8 @@ const Patient = require('../models/PatientModel')
 const mongoose = require('mongoose')
 const getData=async(req,res)=>{
     try {
-const patients=await Doctor.findOne({'firstName':'anis'}).populate('patientsList') //=>req.user:_id ...
+      
+const patients=await Doctor.findOne({_id:req.user._id}).populate('patientsList') //=>req.user:_id ...
 const males =patients.patientsList.filter((patient)=>{
   if (patient.gender=="male"){
     return true

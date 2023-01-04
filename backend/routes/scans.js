@@ -12,6 +12,7 @@ const{
 
 const router = express.Router()
 const { protect } = require('../middleware/authMiddleware')
+router.use(protect)
 //get all scans 
 router.get('/',getScans)
 

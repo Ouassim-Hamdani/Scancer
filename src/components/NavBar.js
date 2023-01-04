@@ -3,7 +3,16 @@ import "tw-elements"
 import avatar from "../assets/avatar.png"
 import profile from "../assets/profile.svg"
 import logout from "../assets/logout.svg"
+import { useAuthContext } from '../hooks/useAuthContext'
+import { useLogout } from '../hooks/useLogout'
 export const NavBar = ({role}) => {
+
+  const {user}=useAuthContext()
+  
+  const {Logout}=useLogout()
+  const logoutClick=()=>{
+Logout()
+  }
     return (
 <header aria-label="Page Header" class="bg-nav nav-header">
   <div class="mx-auto max-w-screen-xl px-4 py-4 sm:px-4 lg:px-4 flex items-center justify-between gap-8">
@@ -85,7 +94,7 @@ export const NavBar = ({role}) => {
         aria-expanded="false"
       >
         <img alt="Man" src={avatar} class="h-10 w-10 rounded-full object-cover"/>
-        {role==="admin"?<span className="text-md text-gray-700 font-semibold">Manel Belghenbour</span>:<span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">Manel Belghenbour</span></span>}
+        {role==="admin"?<span className="text-md text-gray-700 font-semibold">{user.firstName +' '+ user.familyName}</span>:<span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">{user &&  user.firstName +' '+ user.familyName}</span></span>}
 
         <img src={expandIcon} alt="" />
       </a>
@@ -138,6 +147,7 @@ export const NavBar = ({role}) => {
             </a>
         </li>
         <li>
+        <button onClick={logoutClick}>
           <a
             class="
 
@@ -158,7 +168,7 @@ export const NavBar = ({role}) => {
               <img src={logout} className="w-5 h-5" alt="" />
               <div className='w-[1px] h-4 bg-rose-400'></div>
               <span>Log Out</span>
-            </a>
+            </a></button>
         </li>
         
       </ul>

@@ -11,24 +11,44 @@ import { Fragment } from "react";
 import {useState,useEffect } from "react";
 import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
+import { usePatientsContext } from "../../hooks/usePatientsContext"
+import { useAuthContext } from '../../hooks/useAuthContext'
 export function PatientsPage() {
-  const [patients, setPatients] = useState([
 
-  ]
-  )
+
+  const { user } = useAuthContext()
+  const {patients, dispatch} = usePatientsContext()
+  const [selectionModel, setSelectionModel] = useState([]);
   useEffect(() => {
     const fetchData= async () => {
-      const response = await fetch('http://localhost:5000/api/patients')
+      const response = await fetch('http://localhost:5000/api/patients',{
+        headers: {'Authorization': `Bearer ${user.token}`},
+      })
       const json = await response.json()
 
       if (response.ok) {
-        setPatients(json)
+        dispatch({type: 'SET_PATIENTS', payload: json})
+        
       }
+     
     }
+    if(user){
+    fetchData()}
+  },[user,dispatch])
+  const handleClick = async () => {
+    console.log(selectionModel)
+    selectionModel && selectionModel.map(async patient=>{
+    const response = await fetch( 'http://localhost:5000/api/patients/'+ patient, {
+      method: 'DELETE',
+        headers: {'Authorization': `Bearer ${user.token}`},
+      
+    })
+    const json = await response.json()
 
-    fetchData()
-  },[])
-
+    if (response.ok) {
+      dispatch({type: 'DELETE_PATIENT', payload: patient})
+    }
+  }),[user,dispatch]}
 const columns = [
   { field: '_id', 
   headerName: 'No. ID',
@@ -123,7 +143,7 @@ const [showBlur, setShowBlur] = useState(false);
             setShowBlur(true)}>
               <GroupAddIcon />
             </Link>
-            <Link className='bg-red-500 text-white p-3 rounded-lg'>
+            <Link className='bg-red-500 text-white p-3 rounded-lg' onClick={handleClick}>
               <PersonRemoveIcon />
             </Link>
           </div>
@@ -138,6 +158,9 @@ const [showBlur, setShowBlur] = useState(false);
           pageSize={7}
           rowsPerPageOptions={[5]}
           checkboxSelection
+          onSelectionModelChange={(ids) => {
+            setSelectionModel(ids);
+          }}
           getCellClassName={(params)=> {
             return 'aa';
           }}

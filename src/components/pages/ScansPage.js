@@ -9,22 +9,26 @@ import Button from '@mui/material/Button';
 import moment from 'moment';
 import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
+import { useScansContext } from "../../hooks/useScansContext"
+import { useAuthContext } from '../../hooks/useAuthContext'
 export const ScansPage = () => {
-  const [scans, setScans] = useState([
-  ]
-  )
+  const { user } = useAuthContext()
+  const [selectionModel, setSelectionModel] = useState([]);
+  const {scans, dispatch} = useScansContext()
   useEffect(() => {
     const fetchData= async () => {
-      const response = await fetch('http://localhost:5000/api/scans')
+      const response = await fetch('http://localhost:5000/api/scans',{
+        headers: {'Authorization': `Bearer ${user.token}`},
+      })
       const json = await response.json()
 
       if (response.ok) {
-        setScans(json)
+        dispatch({type: 'SET_SCANS', payload: json})
       }
     }
-
-    fetchData()
-  },[])
+    if (user){
+    fetchData()}
+  },[user,dispatch])
 
 
 const columns = [
@@ -41,10 +45,10 @@ const columns = [
   headerAlign: 'center', 
   renderCell: (params)=>{
     return (
-      <div className='flex items-center'>
+      <div className='flex items-left'>
         <img className='object-cover w-8 h-8 rounded-full mr-3' src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
    
-        {params.row.patient.firstName+' '+params.row.patient.familyName}
+        {params.row.patient&& params.row.patient.firstName+' '+params.row.patient.familyName}
       </div>
     )
   } },
@@ -68,10 +72,10 @@ const columns = [
   align: 'center',
   headerAlign: 'center',
   renderCell: (params)=>{
-      if (params.row.status === 'Hospital'){
+      if (params.row.status=== 'positive'){
         return (
           <div className=''>
-          <p className='text-[#ed0b0b] border w-28 px-8 py-1 rounded-xl bg-[#f59c9c]'>Hospital</p>
+          <p className='text-[#ed0b0b] border w-28 px-8 py-1 rounded-xl bg-[#f59c9c]'>Positive</p>
           </div>
         )
       }
