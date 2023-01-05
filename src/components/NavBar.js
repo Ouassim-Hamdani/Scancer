@@ -12,6 +12,7 @@ export const NavBar = ({role}) => {
   const {Logout}=useLogout()
   const logoutClick=()=>{
 Logout()
+
   }
     return (
 <header aria-label="Page Header" class="bg-nav nav-header">

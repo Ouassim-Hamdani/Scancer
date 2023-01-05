@@ -35,9 +35,9 @@ export function PatientsPage() {
     if(user){
     fetchData()}
   },[user,dispatch])
-  const handleClick = async () => {
+  const handleClick = async () => (
     console.log(selectionModel)
-    selectionModel && selectionModel.map(async patient=>{
+    (selectionModel && selectionModel.map(async patient=>{
     const response = await fetch( 'http://localhost:5000/api/patients/'+ patient, {
       method: 'DELETE',
         headers: {'Authorization': `Bearer ${user.token}`},
@@ -48,7 +48,7 @@ export function PatientsPage() {
     if (response.ok) {
       dispatch({type: 'DELETE_PATIENT', payload: patient})
     }
-  }),[user,dispatch]}
+  })),[user,dispatch])
 const columns = [
   { field: '_id', 
   headerName: 'No. ID',
