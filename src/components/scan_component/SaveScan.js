@@ -1,7 +1,6 @@
 import saveIcon from "../../assets/saveIcon.svg"
 //import { patientsList } from "../../constants/constants"
 import { useState ,useEffect} from 'react'
-const axios = require('axios')
 export const SaveScan = () => {
     
     const [file, setFile] = useState('')
