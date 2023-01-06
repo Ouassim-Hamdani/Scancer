@@ -5,7 +5,10 @@ const Schema = mongoose.Schema
 
 
 const ContactInfoSchema = mongoose.Schema({
-    phoneNumber: Number,
+  phoneNumber: {
+    type: Number,
+    required: [true, 'Please add an number'],
+  },
     landLine: Number,
     email: {
         type: String,
@@ -53,7 +56,8 @@ const DoctorSchema = new Schema({
         type: String,
         required: [true, 'Please add a password'],
       },
-    birthDate:Date,
+    birthDate:{type:Date,
+      required:true,},
    
     gender:{
         type :String,
@@ -82,9 +86,9 @@ DoctorSchema.statics.signup = async function(password,firstName,familyName,gende
   if (!validator.isEmail(contacts.email)) {
     throw Error('Email not valid')
   }
-  if (!validator.isStrongPassword(password)) {
-    throw Error('Password not strong enough')
-  }
+ // if (!validator.isStrongPassword(password)) {
+   // throw Error('Password not strong enough')
+  //}
   const exists = await this.findOne({ "contacts.email":contacts.email })
 
   if (exists) {

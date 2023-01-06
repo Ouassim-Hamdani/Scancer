@@ -3,31 +3,52 @@ import {rowsReportScan} from '../../constants/constants'
 import {Box} from '@mui/material';
 import {Blur} from '../Blur';
 import { Fragment } from "react";
-import {useState } from "react";
+import {useState ,useEffect} from "react";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Button from '@mui/material/Button';
 import moment from 'moment';
 import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
+import { useScansContext } from "../../hooks/useScansContext"
+import { useAuthContext } from '../../hooks/useAuthContext'
 export const ScansPage = () => {
+  const { user } = useAuthContext()
+  const [selectionModel, setSelectionModel] = useState([]);
+  const {scans, dispatch} = useScansContext()
+  useEffect(() => {
+    const fetchData= async () => {
+      const response = await fetch('http://localhost:5000/api/scans',{
+        headers: {'Authorization': `Bearer ${user.token}`},
+      })
+      const json = await response.json()
+
+      if (response.ok) {
+        dispatch({type: 'SET_SCANS', payload: json})
+      }
+    }
+    if (user){
+    fetchData()}
+  },[user,dispatch])
+
 
 const columns = [
-  { field: 'id', 
+  { field: '_id', 
   headerName: 'No. Scan', 
   width: 160,
   align: 'center',
   headerAlign: 'center' },
 
-  { field: 'patientname',
+  { field: 'patient',
   headerName: 'Patient Name',
   width: 300,
   align: 'center',
   headerAlign: 'center', 
   renderCell: (params)=>{
     return (
-      <div className='flex items-center'>
-        <img className='object-cover w-8 h-8 rounded-full mr-3' src={params.row.avatar} alt="" />
-        {params.row.patientname}
+      <div className='flex items-left'>
+        <img className='object-cover w-8 h-8 rounded-full mr-3' src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+   
+        {params.row.patient&& params.row.patient.firstName+' '+params.row.patient.familyName}
       </div>
     )
   } },
@@ -41,20 +62,20 @@ const columns = [
   { field: 'date', 
   headerName: 'Date', 
   width: 160,
-  renderCell: params=>moment(params.row.date).format('DD-MM-YYYY'),
+  renderCell: params=>moment(params.row.createdAt).format('DD-MM-YYYY'),
   align: 'center',
   headerAlign: 'center' },
 
-  { field: 'status', 
-  headerName: 'Status',
+  { field: 'result', 
+  headerName: 'Result',
   width: 200,
   align: 'center',
   headerAlign: 'center',
   renderCell: (params)=>{
-      if (params.row.status === 'Hospital'){
+      if (params.row.status=== 'positive'){
         return (
           <div className=''>
-          <p className='text-[#ed0b0b] border w-28 px-8 py-1 rounded-xl bg-[#f59c9c]'>Hospital</p>
+          <p className='text-[#ed0b0b] border w-28 px-8 py-1 rounded-xl bg-[#f59c9c]'>Positive</p>
           </div>
         )
       }
@@ -116,7 +137,8 @@ const [showBlur, setShowBlur] = useState(false);
         </div>
         
         <DataGrid className='pl-4'
-          rows={rowsReportScan}
+          getRowId={(row) => row._id}
+          rows={scans}
           disableSelectionOnClick
           columns={columns}
           pageSize={7}

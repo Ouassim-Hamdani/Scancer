@@ -5,7 +5,10 @@ const Schema = mongoose.Schema
 
 
 const ContactInfoSchema = mongoose.Schema({
-    phoneNumber: Number,
+    phoneNumber: {
+      type: Number,
+      required: [true, 'Please add an number'],
+    },
     landLine: Number,
     email: {
         type: String,
@@ -34,8 +37,9 @@ const PatientSchema = new Schema({
         type: String,
         required: [true, 'Please add a password'],
       },
-    birthDate:Date,
-   
+    birthDate:{type:Date,
+      required:true,},
+
     gender:{
         type :String,
         required: true,

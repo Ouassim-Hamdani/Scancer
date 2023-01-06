@@ -12,16 +12,17 @@ const{
 
 const router = express.Router()
 const { protect } = require('../middleware/authMiddleware')
+router.use(protect)
 //get all scans 
-router.get('/',protect,getScans)
+router.get('/',getScans)
 
 //get one scan 
-router.get('/:id',protect,getOneScan)
+router.get('/:id',getOneScan)
 //create a scan
-router.post('/',protect,createScan)
+router.post('/',createScan)
 //delete a scan
-router.delete('/:id',protect,deleteScan)
+router.delete('/:id',deleteScan)
 //update a scan
-router.patch('/:id',protect,updateScan)
+router.patch('/:id',updateScan)
 
 module.exports=router  
