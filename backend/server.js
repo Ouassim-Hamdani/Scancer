@@ -13,6 +13,7 @@ const loginRoutes = require('./routes/login')
 const adminRoutes = require('./routes/admin')
 const patientRoutes = require('./routes/patients')
 const dashboardRoutes = require('./routes/doctor')
+const conversationRoutes = require('./routes/conversation')
 
 
 //middleware
@@ -28,6 +29,7 @@ app.use('/api/login',loginRoutes)
 app.use('/api/admin',adminRoutes)
 app.use('/api/patients',patientRoutes)
 app.use('/api/dashboard',dashboardRoutes)
+app.use('/api/conversation', conversationRoutes)
 
 
 //connect to db
