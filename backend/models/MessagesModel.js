@@ -9,13 +9,7 @@ const MessagesSchema = new mongoose.Schema(
             required : true
         },
         sender : {
-            type : mongoose.Schema.Types.ObjectId,
-            refPath : 'model_type',
-            model_type : {
-                type : String,
-                enum : ['Patient', 'Doctor'],
-                required : true
-            }
+            type : String
         },
         message : {
             type : String,
