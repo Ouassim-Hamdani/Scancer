@@ -17,11 +17,11 @@ const startConversation = async (req, res) => {
 const userConversations = async (req, res) => {
     try {
         const conversations = await Conversation.find({
-            members : {$in : [req.body.userID]}
+            members : {$in : [req.params.userID]}
         });
         res.status(200).json({status:'ok', conversations})
     } catch (error) {
-        res.status(400).json({status:'err',error: error.message})
+        res.status(400).json({status:'err',error: error.message, conversations:false})
     }
 
 };
@@ -29,11 +29,11 @@ const userConversations = async (req, res) => {
 const findConversation = async (req, res) => {
     try {
         const conversation = await Conversation.findOne({
-            members : {$all : [req.body.firstID, req.body.secondID]}
+            members : {$all : [req.params.firstID, req.params.secondID]}
         });
         res.status(200).json({status:'ok', conversation})
     } catch (error) {
-        res.status(400).json({status:'err',error: error.message})
+        res.status(400).json({status:'err',error: error.message, conversation:false})
     }
 
 };

@@ -1,0 +1,28 @@
+const Messages = require('../models/MessagesModel')
+
+const addMessage = async (req, res) => {
+    const {conversationID, sender, message} = req.body;
+    const newMessage = new Messages({
+        conversationID, sender, message
+    })
+    try {
+        const result = await newMessage.save();
+        res.status(200).json({status:'ok', result})
+    } catch (error) {
+        res.status(400).json({status:'err',error: error.message, newMessage:false})
+    }
+}
+
+const getChatMessages = async (req, res) => {
+    const {conversationID} = req.params;
+    try {
+        const messages = await Messages.find({
+            conversationID
+        });
+        res.status(200).json({status:'ok', messages})
+    } catch (error) {
+        res.status(400).json({status:'err',error: error.message, messages:false})
+    }
+}
+
+module.exports = {addMessage, getChatMessages};
