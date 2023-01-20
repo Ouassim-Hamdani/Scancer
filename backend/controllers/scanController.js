@@ -74,12 +74,13 @@ const getOneScan= async (req,res)=>{
      const scan=await Doctor.findOne({_id:req.user._id},{ scans: { $elemMatch: {_id: id }}})
 
      if (!scan) {
-        return res.status(404).json({error: 'No such scan'})
-      }
-     res.status(200).json(scan.scans[0])
-}
+         return res.status(404).json({error: 'No such scan'})
+        }
+        res.status(200).json(scan.scans[0])
+    }
 
-const downloadScan =  (req, res) =>{
+let ModelInput;
+const getScanForModel =  (req, res) =>{
     const conn = mongoose.connection
     const db = conn.db
     const mongo = mongoose.mongo
@@ -100,16 +101,16 @@ const downloadScan =  (req, res) =>{
     downloadStream.on("end", ()=>{console.log("done!!");
     let file;
     gfs.files.findOne({_id: mongoose.Types.ObjectId(req.params.id)}).then((fls)=>{
-        result = {
+        ModelInput = {
         filetype : fls.contentType,
         data: Buffer.concat(chunks).toString(undefined)
     }
-    res.json(result);
+    //res.json(ModelInput);
     });
     });
-    
-
 }
+
+
 //delete a scan
 const deleteScan=async (req,res)=>{
     const {id}=req.params
@@ -144,5 +145,5 @@ module.exports={
     getOneScan,
     deleteScan,
     updateScan,
-    downloadScan 
+    getScanForModel 
 }

@@ -8,7 +8,7 @@ const{
     getOneScan,
     deleteScan,
     updateScan,
-    downloadScan
+    getScanForModel
 }=require('../controllers/scanController');
 
 
@@ -33,7 +33,8 @@ router.delete('/:id',deleteScan)
 //update a scan
 router.patch('/:id',updateScan)
 
-//download a scan
-router.get("/download/:id", downloadScan)
+//this was for experimenting
+
+//router.get("/process/:id", getScanForModel)
 
 module.exports=router  
