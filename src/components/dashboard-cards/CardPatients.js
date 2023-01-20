@@ -1,8 +1,34 @@
 import up from '../../assets/up.svg'
 import down from '../../assets/down.svg'
 import dateExpand from '../../assets/dateExpand.svg'
-import { patientsData } from '../../constants/constants';
+import { useAuthContext } from "../../hooks/useAuthContext"
+import React, { useState, useEffect, useRef } from 'react'
+//import { patientsData } from '../../constants/constants';
 export const CardPatients = () => {
+    const [patientsData, setData] = useState([{name:"New",value:0,perc:0,stat:"up"},
+                              {name:"All",value:0,perc:0,stat:"down"},
+                              {name:"Sick",value:0,perc:0,stat:"down"}])
+                            
+                                const {user} = useAuthContext()
+                                const ref = useRef(null)
+                                if (user){
+                                  console.log(user)
+                                }
+                                useEffect(() => {
+                                  const fetchData= async () => {
+                                    const response = await fetch('http://localhost:5000/api/dashboard/lastMonth',{
+                                      headers: {'Authorization': `Bearer ${user.token}`},
+                                    })
+                                    const json = await response.json()
+                              
+                                    if (response.ok) {
+                                      setData(json.Patientsdata)
+                                    }
+                                  }
+                                  if (user){
+                                  fetchData()}
+                                
+                                },[user,patientsData])
     return (
         <div className="bg-secondary px-6 py-6 rounded-2xl space-y-4 shadow-xl">
             
