@@ -11,7 +11,8 @@ export const SaveScan = () => {
 
   useEffect(() => {
     const fetchPatients = async () => {
-      const response = await fetch('http://localhost:5000/api/patients')
+      const response = await fetch('http://localhost:5000/api/patients',{
+      headers:{'Authorization': `Bearer ${user.token}`}})
       const json = await response.json()
 
       if (response.ok) {

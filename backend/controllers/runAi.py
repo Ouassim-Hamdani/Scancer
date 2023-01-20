@@ -28,11 +28,12 @@ def crop_brain_contour(image):
     
     return new_image
 
-model = load_model("/kaggle/working/model.h5")
-def predictCancer(imagePath):
+model = load_model("model.h5")
+def predictCancer(imageBin,ext="png"):
+    with open("tempImg."+ext,"wb") as img:
+        img.write(imageBin)
     img_width, img_height = (240, 240)
-    directory = '/kaggle/input/brain-mri-images-for-brain-tumor-detection/yes/'
-    image = cv2.imread(directory+'/'+imagePath)
+    image = cv2.imread("tempImg."+ext)
     image = crop_brain_contour(image)
     image = cv2.resize(image, dsize=(img_width, img_height), interpolation=cv2.INTER_CUBIC)
     # normalize values

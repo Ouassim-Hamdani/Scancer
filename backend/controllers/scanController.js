@@ -1,11 +1,24 @@
 const Doctor =require('../models/DoctorModel');
 const Patient =require('../models/PatientModel');
+const {spawn,exec} = require('child_process');
+const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
 
+const scanResult =async (req,res)=>{
+    //const {file}=req.body
 
+    const {
+        stdout,
+        stderr
+      } = await exec('runAi.py');
+    
+      console.log('stdout:', stdout);
+      console.error('stderr:', stderr);
+      res.status(200).json({stdout})
+}
 //create scan
 const createScan= async (req,res)=>{
+
     const {result,file,comment,patient}=req.body
      
     try{  
@@ -75,4 +88,5 @@ module.exports={
     getOneScan,
     deleteScan,
     updateScan,   
+    scanResult,
 }

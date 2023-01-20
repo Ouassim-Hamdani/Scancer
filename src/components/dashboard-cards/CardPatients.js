@@ -8,7 +8,7 @@ export const CardPatients = () => {
     const [patientsData, setData] = useState([{name:"New",value:0,perc:0,stat:"up"},
                               {name:"All",value:0,perc:0,stat:"down"},
                               {name:"Sick",value:0,perc:0,stat:"down"}])
-                            
+                                                          
                                 const {user} = useAuthContext()
                                 const ref = useRef(null)
                                 if (user){
