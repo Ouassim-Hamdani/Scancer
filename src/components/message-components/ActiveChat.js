@@ -11,8 +11,9 @@ export const ActiveChat = ({id}) => {
     {role:"rec",time:"15:02",msg:"Looked up at me with honor and truth",id:5},
     {role:"sender",time:"15:02",msg:"Broken and blue, so I called off the troops",id:6},
     {role:"rec",time:"15:02",msg:"That was the night I nearly lost you",id:7},
-    {role:"sender",time:"15:02",msg:"That was the night I nearly lost you!",id:8},
-]);
+    {role:"sender",time:"15:02",msg:"That was the night I nearly lost you!",id:8}]);
+
+    //const 
     //setMsgsHistory(arr => [arr,newMsg])
   return (
     <div className="w-7/12 h-full">
@@ -22,7 +23,8 @@ export const ActiveChat = ({id}) => {
                         <span className="text-gray-800 font-semibold text-xl">Taylor Swift</span>
                         <span className="text-gray-400">Online</span>
             </div>
-            
+
+
         </div>
         <div className="bg-gray-200 w-full px-3 py-1 space-y-1.5 overflow-y-auto h-[75%]">
                 {

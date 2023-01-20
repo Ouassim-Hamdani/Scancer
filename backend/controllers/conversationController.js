@@ -16,9 +16,10 @@ const startConversation = async (req, res) => {
 
 const userConversations = async (req, res) => {
     try {
-        const conversations = await Conversation.find({
-            members : {$in : [req.params.userID]}
-        });
+        const conversations = await Conversation.find(
+            {doctor : req.params.userID}
+        ).populate('doctor').populate('patient');
+        console.log(conversations)
         res.status(200).json({status:'ok', conversations})
     } catch (error) {
         res.status(400).json({status:'err',error: error.message, conversations:false})
