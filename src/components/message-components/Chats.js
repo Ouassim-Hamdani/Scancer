@@ -2,6 +2,7 @@ import plusIcon from "../../assets/plus.svg"
 import { ChatEntry } from "./ChatEntry"
 import { chatsList } from "../../constants/constants"
 import { useState } from "react"
+import { AddChat } from "./AddChat"
 export const Chats = ({active}) => {
     let [activeChatId,setActiveChatId] = useState(active);
     const handleClick = (id) => {
@@ -43,7 +44,9 @@ export const Chats = ({active}) => {
                 </svg>
             </button>
             </div>
-            <img src={plusIcon} className="p-3 rounded-full w-10 h-10 hover:bg-gray-100 hover:rotate-90 transition-all shadow-md border border-gray-200" alt="" />
+            <div>
+                <AddChat/>
+            </div>
         </div>
         <div className="flex  overflow-y-auto flex-col h-[80%] w-full">
             {chatsList.map((chat)=>{
