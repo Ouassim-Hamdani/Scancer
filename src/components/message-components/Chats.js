@@ -1,7 +1,9 @@
 import plusIcon from "../../assets/plus.svg"
 import { ChatEntry } from "./ChatEntry"
 import { chatsList } from "../../constants/constants"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useAuthContext } from "../../hooks/useAuthContext"
+import axios from 'axios'
 import { AddChat } from "./AddChat"
 export const Chats = ({active}) => {
     let [activeChatId,setActiveChatId] = useState(active);
@@ -9,6 +11,22 @@ export const Chats = ({active}) => {
         setActiveChatId(id);
         active = id;
     };
+    const {user} = useAuthContext()
+    const {chatsList, setChatsList} = useState([])
+
+    useEffect(() =>{
+        const getChats = () => {
+            try {
+                const API = axios.create({baseURL : 'http://localhost:5000'})
+                const {data} = API.get(`/api/conversation/${user._id}`)
+                setChatsList(data)
+                console.log(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getChats()
+    }, [user])
   return (
     <div className="flex flex-col p-4 pr-0 space-y-6 w-[36.3%] border-r border-r-gray-200 relative h-full">
         <span className="font-semibold pl-4 text-2xl text-gray-900">Chats</span>
