@@ -23,7 +23,8 @@ const AddressSchema = mongoose.Schema({
     ZIPcode: Number,
     city:String,
   });
-const PositionSchema =mongoose.Schema({
+
+  const PositionSchema =mongoose.Schema({
     grade:String,
     speciality:String,
 })
@@ -42,7 +43,8 @@ const ScanSchema = mongoose.Schema({
       ref :'Patient',
        }
   },{timestamps:true});
-const DoctorSchema = new Schema({
+
+  const DoctorSchema = new Schema({
     
     firstName :{
         type :String,

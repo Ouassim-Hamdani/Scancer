@@ -111,3 +111,7 @@ export const rowsDoctors = [
   { id: 13, doctorname: 'Ferrouk Massinissa', avatar: "https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500", age: 19, gender: 'Male', status: 'Hospital', reports: 'm'},
 
 ];
+
+
+export const patientsChatsAdd = [{name:"Taylor Swift",avatar:"https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"},
+{name:"Taylor Swift",avatar:"https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500"}];
