@@ -1,6 +1,6 @@
 const Doctor =require('../models/DoctorModel');
 const Patient =require('../models/PatientModel');
-const {spawn} = require('child_process');
+const {spawn,exec} = require('child_process');
 const mongoose = require('mongoose');
 const grid = require("gridfs-stream");
 const multer = require("multer");
@@ -112,14 +112,21 @@ const getScanForModel =  (req, res) =>{
         filetype : fls.contentType,
         data: Buffer.concat(chunks).toString(undefined)
     }
-    console.log(__dirname+'/runAi.py')
-    const pyProg = spawn('python', [__dirname+'\runAi.py',ModelInput.data,ModelInput.filetype]);
 
-    pyProg.stdout.on('data', function(data) {
-
-        dataToSend = data.toString();
-    });
-    res.json(dataToSend);
+    const pyProg = exec('cd controllers && D:/python/Scripts/activate && D:/python/python.exe runAi.py '+ModelInput.data+"         "+ModelInput.filetype, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`error: ${error.message}`);
+          return;
+        }
+      
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+      
+        console.log(`stdout:\n${stdout}`);
+      });
+    
     });
     });
 }
