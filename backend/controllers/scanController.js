@@ -3,7 +3,42 @@ const Patient =require('../models/PatientModel');
 const {spawn} = require('child_process');
 const mongoose = require('mongoose');
 
+const mongoose = require('mongoose')
+const grid = require("gridfs-stream");
+const multer = require("multer");
+const {GridFsStorage} = require("multer-gridfs-storage");
+const fs = require("fs");
+/* for experimenting*/ 
 
+// Setup file uploader 
+
+const setupUploader = ()=>{
+    // Init gfs
+    let gfs;
+    conn = mongoose.connection
+    conn.once('open', () => {
+    // Init stream
+    gfs = grid(conn.db, mongoose.mongo);
+    gfs.collection('Files');
+    });
+
+    // Create storage engine
+    const storage = new GridFsStorage({
+    url: process.env.db_uri,
+    file: (req, file) => {
+        return {
+            filename: file.originalname,
+            bucketName: 'Files'
+            };
+    }
+    });
+    return multer({ storage });
+    
+}
+
+
+
+/* end:: for experimenting */
 const scanResult =async (req,res)=>{
     const {file,type}=req.body
    
@@ -23,9 +58,12 @@ const scanResult =async (req,res)=>{
 const createScan= async (req,res)=>{
 
     const {result,file,comment,patient}=req.body
-     
+    
     try{  
-        const scan=await Doctor.updateOne({_id:req.user._id},{ $push: { scans: {patient:patient,result: result ,file:file,comment:comment}}})
+        const scan=await Doctor.updateOne({_id:req.user._id},{ $push: { scans: {patient:patient,result: result ,file:req.file.id,comment:comment}}})
+        console.log(req.user._id);
+        console.log(req.user);
+
         res.status(200).json(scan)
     }catch(err){
         res.status(400).json({msg:err.message})
@@ -54,10 +92,42 @@ const getOneScan= async (req,res)=>{
      const scan=await Doctor.findOne({_id:req.user._id},{ scans: { $elemMatch: {_id: id }}})
 
      if (!scan) {
-        return res.status(404).json({error: 'No such scan'})
-      }
-     res.status(200).json(scan.scans[0])
+         return res.status(404).json({error: 'No such scan'})
+        }
+        res.status(200).json(scan.scans[0])
+    }
+
+let ModelInput;
+const getScanForModel =  (req, res) =>{
+    const conn = mongoose.connection
+    const db = conn.db
+    const mongo = mongoose.mongo
+
+    const gfs = grid(db, mongo);
+    gfs.collection("Files")
+
+    
+    const bucket = new mongoose.mongo.GridFSBucket(db, {bucketName: "Files"})
+    
+    
+    //const prm = 
+    let result;
+    const downloadStream = bucket.openDownloadStream(mongoose.Types.ObjectId(req.params.id))
+    let chunks = []
+    downloadStream.on("data", (chunk)=>{chunks.push(Buffer.from(chunk))})
+    downloadStream.on("error", (err)=>{console.log(err)})
+    downloadStream.on("end", ()=>{console.log("done!!");
+    let file;
+    gfs.files.findOne({_id: mongoose.Types.ObjectId(req.params.id)}).then((fls)=>{
+        ModelInput = {
+        filetype : fls.contentType,
+        data: Buffer.concat(chunks).toString(undefined)
+    }
+    //res.json(ModelInput);
+    });
+    });
 }
+
 
 //delete a scan
 const deleteScan=async (req,res)=>{
@@ -70,6 +140,7 @@ const deleteScan=async (req,res)=>{
     //const scan = doc.scans.id(id).remove()doc.save()
     res.status(200).json(doc)
 }
+
 //update a scan
 const updateScan = async(req,res)=>{
     const {id}=req.params
@@ -86,10 +157,12 @@ const updateScan = async(req,res)=>{
 }
 
 module.exports={
+    setupUploader,
     createScan,
     getScans,
     getOneScan,
     deleteScan,
-    updateScan,   
+    updateScan,
+    getScanForModel,
     scanResult,
 }

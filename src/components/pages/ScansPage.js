@@ -11,6 +11,7 @@ import { NavBar } from '../NavBar';
 import { SideBar } from '../SideBar';
 import { useScansContext } from "../../hooks/useScansContext"
 import { useAuthContext } from '../../hooks/useAuthContext'
+
 export const ScansPage = () => {
   const { user } = useAuthContext()
   const [selectionModel, setSelectionModel] = useState([]);
