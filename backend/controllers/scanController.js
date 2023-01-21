@@ -3,7 +3,6 @@ const Patient =require('../models/PatientModel');
 const {spawn} = require('child_process');
 const mongoose = require('mongoose');
 
-const mongoose = require('mongoose')
 const grid = require("gridfs-stream");
 const multer = require("multer");
 const {GridFsStorage} = require("multer-gridfs-storage");

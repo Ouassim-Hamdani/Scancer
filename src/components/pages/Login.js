@@ -2,6 +2,7 @@ import React from 'react'
 import {ReactComponent as LoginImg} from "../../assets/login.svg"
 import {useLogin} from '../../hooks/useLogin.js'
 import { useState } from 'react'
+import logo from "../../assets/logo.png"
 export function Login() {
     
     const [email, setEmail] = useState('')
@@ -15,20 +16,23 @@ export function Login() {
     
   return (
     <div className='flex'>
+
         <div className='w-1/2 h-screen flex flex-col justify-center items-center'>
+            <img src={logo} className="w-1/6 pb-12" alt="" />
+
             <div className='text-3xl font-semibold'>
                 <p>Welcome Back</p>
             </div>
             <form className='flex flex-col'  onSubmit={handleSubmit}>
                 <div className='pt-10'>
                     <input type="email"         onChange={(e) => setEmail(e.target.value)} 
-                     value={email}  placeholder='Enter your Email' className='rounded-xl w-[300px] pb-3'/>
+                     value={email}  placeholder='Enter your Email' className='rounded-xl w-[300px]'/>
                 </div>
                 <div className='pt-5'>
                     <input type="password" placeholder='Enter your Password' 
                             onChange={(e) => setPassword(e.target.value)} 
                             value={password} 
-                            className='rounded-xl w-[300px] pb-3'/>
+                            className='rounded-xl w-[300px]'/>
                 </div>
                 <div className='pt-10 flex justify-center'>
                     <button disabled={isLoading} className='border rounded-xl w-[300px] py-2 bg-primary text-white hover:bg-blue-600'>

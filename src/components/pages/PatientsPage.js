@@ -2,7 +2,7 @@
 import { DataGrid } from '@mui/x-data-grid';
 //import {patients} from '../../constants/constants'
 import {Box} from '@mui/material';
-
+import avatar from "../../assets/avatar.jpg"
 import { Link } from "react-router-dom";
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
@@ -64,7 +64,7 @@ const columns = [
   renderCell: (params)=>{
     return (
       <div className='flex items-center'>
-        <img className='object-cover w-8 h-8 rounded-full mr-3' src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+        <img className='object-cover w-8 h-8 rounded-full mr-3' src={avatar} alt="" />
         {params.row.firstName+' '+params.row.familyName}
       </div>
     )
@@ -153,11 +153,11 @@ const [showBlur, setShowBlur] = useState(false);
         <div className='w-full p-4 flex items-center justify-between'>
           <p className='text-3xl font-semibold'>Patients</p>
           <div className='space-x-6 '>
-            <Link className='bg-blue-800 text-white p-3 rounded-lg' onClick={() =>
+            <Link className='bg-primary hover:bg-blue-700 transition-all  text-white p-3 rounded-lg' onClick={() =>
             setShowBlur(true)}>
               <GroupAddIcon />
             </Link>
-            <Link className='bg-red-500 text-white p-3 rounded-lg' onClick={handleClick}>
+            <Link className='bg-rose-500 hover:bg-rose-600 transition-all  text-white p-3 rounded-lg' onClick={handleClick}>
               <PersonRemoveIcon />
             </Link>
           </div>

@@ -95,7 +95,7 @@ Logout()
         aria-expanded="false"
       >
         <img alt="Man" src={avatar} class="h-10 w-10 rounded-full object-cover"/>
-        {role==="admin"?<span className="text-md text-gray-700 font-semibold">{user.firstName +' '+ user.familyName}</span>:<span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">{user &&  user.firstName +' '+ user.familyName}</span></span>}
+        {role==="admin"?<span className="text-md text-gray-700 font-semibold">{user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)+' '+ user.familyName.charAt(0).toUpperCase() + user.familyName.slice(1)}</span>:<span className="text-md text-gray-500 font-semibold">Dr. <span className="text-gray-700">{user && user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1)+' '+ user.familyName.charAt(0).toUpperCase() + user.familyName.slice(1)}</span></span>}
 
         <img src={expandIcon} alt="" />
       </a>
@@ -148,21 +148,21 @@ Logout()
             </a>
         </li>
         <li>
-        <button onClick={logoutClick}>
+        <button onClick={logoutClick} className=" hover:bg-gray-100 px-6  ">
           <a
             class="
 
               dropdown-item
               text-md
               py-2
-              px-4
+
               font-normal
               flex flex-row space-x-3 items-center 
               w-full
               whitespace-nowrap
               bg-transparent
               text-rose-600
-              hover:bg-gray-100
+             
             "
             href="#"
             >
