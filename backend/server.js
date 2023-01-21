@@ -44,6 +44,3 @@ mongoose.connect(process.env.db_uri).then(()=>{
     console.log(err)
 })
 
-app.get('/',(req, res)=>{
-    res.json({zbi:"zbi"})
-})

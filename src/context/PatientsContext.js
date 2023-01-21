@@ -12,7 +12,7 @@ export const patientReducer = (state, action) => {
       
     case 'CREATE_PATIENT':
       return { 
-        patients: [action.payload, ...state.scans] 
+        patients: [action.payload, ...state.patients] 
       }
     case 'DELETE_PATIENT':
       return { 

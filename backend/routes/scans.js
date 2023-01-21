@@ -6,6 +6,7 @@ const{
     getOneScan,
     deleteScan,
     updateScan,
+    scanResult,
 
 }=require('../controllers/scanController');
 
@@ -18,6 +19,9 @@ router.get('/',getScans)
 
 //get one scan 
 router.get('/:id',getOneScan)
+
+//get ai model result 
+router.get('/zbi/zbi',scanResult)
 //create a scan
 router.post('/',createScan)
 //delete a scan
