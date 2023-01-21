@@ -45,15 +45,19 @@ const addPatient= async (req,res)=>{
 // Create a new patient
 const createPatient = async function(req, res) {
     
-    const { password,firstName,familyName,gender,address,contacts,birthDate,status} = req.body
+    const { password,firstName,familyName,gender,contacts,birthDate,status} = req.body
     
     try {
+      console.log(contacts.email)
       const birthday= new Date(birthDate)
-      const patient = await Patient.signup(password,firstName,familyName,gender,address,contacts,birthday,status)
+      const patient = await Patient.signup(password,firstName,familyName,gender,contacts,birthDate,status)
       //add patient to doctor's patient list ({'firstName':'anis'} will be _id:req.user._id after linking the login front)
       const addpatient=await Doctor.updateOne({_id:req.user._id},{ $push: { patientsList: patient._id}})
+    console.log("haha")
       res.status(200).json({patient})
+    
     } catch (error) {
+      console.log(error)
       res.status(400).json({error: error.message})
     }
   }

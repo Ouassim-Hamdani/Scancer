@@ -53,8 +53,9 @@ const PatientSchema = new Schema({
 },{timestamps:true})
 
 // static create an account method
-PatientSchema.statics.signup = async function(password,firstName,familyName,gender,address,contacts,birthDate,status) {
+PatientSchema.statics.signup = async function(password,firstName,familyName,gender,contacts,birthDate,status) {
   // validation
+  console.log(contacts.email)
   if (!contacts.email || !password) { 
     throw Error('You must fill the email and the password field')
   }
@@ -74,7 +75,7 @@ PatientSchema.statics.signup = async function(password,firstName,familyName,gend
   const salt = await bcrypt.genSalt(10)
   const hash = await bcrypt.hash(password, salt)
 
-  const patient = await this.create({password:hash,firstName,familyName,gender,address,contacts,birthDate,status})
+  const patient = await this.create({password:hash,firstName,familyName,gender,contacts,birthDate,status})
 
   return patient
 }

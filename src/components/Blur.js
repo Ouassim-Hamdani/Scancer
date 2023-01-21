@@ -4,8 +4,8 @@ import Button from '@mui/material/Button';
 
 import {useState,useEffect} from 'react'
 
-import { usePatientsContext } from "../../hooks/usePatientsContext"
-import { useAuthContext } from '../../hooks/useAuthContext'
+import { usePatientsContext } from "../hooks/usePatientsContext"
+import { useAuthContext } from '../hooks/useAuthContext'
 export const Blur = ({ isVisible, onClose }) => {
   const { user } = useAuthContext()
   const {patients, dispatch} = usePatientsContext()
@@ -13,7 +13,7 @@ export const Blur = ({ isVisible, onClose }) => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
   const [firstName, setFirst] = useState(null)
-  const [lastName, setLast] = useState(null)
+  const [familyName, setLast] = useState(null)
   const [phoneNumber, setNumber] = useState(null)
   const [landLine, setLandline] = useState(null)
   const [gender, setGender] = useState(null)
@@ -28,11 +28,8 @@ export const Blur = ({ isVisible, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const contacts ={
-      email:email,
-      phoneNumber:phoneNumber,
-    }
-    const patient = { password,firstName,familyName,gender,address,contacts,birthDate:Date(birthDate),status}
+   
+    const patient = { password,firstName,familyName,gender,contacts:{email:email,phoneNumber:phoneNumber},birthDate,status}
     
     const response = await fetch('http://localhost:5000/api/patients/create', {
       method: 'POST',
@@ -43,13 +40,10 @@ export const Blur = ({ isVisible, onClose }) => {
       }
     })
     const json = await response.json()
-
-    if (!response.ok) {
-        setError(json.error)
-      }
       if (response.ok) {
         
         dispatch({type: 'CREATE_PATIENT', payload: json})
+        console.log(patients)
       }
   }
 
@@ -61,7 +55,7 @@ export const Blur = ({ isVisible, onClose }) => {
         <div className='bg-white p-5 rounded-xl space-y-5 justify-center'>
           <p className='text-lg font-semibold flex justify-center'>Add Patient</p>
           <div className=''>
-            <form className='space-y-4' onSubmit={handleSubmit}>
+            <form className='space-y-4' action="" onSubmit={handleSubmit}>
               <div className='flex flex-row justify-between w-5/6 space-x-2 relative'>
                 <input          onChange={(e) => setFirst(e.target.value)} 
                             value={firstName} 
@@ -80,8 +74,8 @@ export const Blur = ({ isVisible, onClose }) => {
                             value={status} placeholder='Status' className='border border-gray-300 rounded-xl p-2.5 pl-5'/>
               </div>
               <div className=''>
-                <input                             onChange={(e) => setAdress(e.target.value)} 
-                            value={address} placeholder='Address' className='border border-gray-300 rounded-xl p-2.5 pl-5 w-full'/>
+                <input                             
+                           placeholder='Address' className='border border-gray-300 rounded-xl p-2.5 pl-5 w-full'/>
               </div>
               <div className=''>
                 <input                             onChange={(e) => setEmail(e.target.value)} 
@@ -97,10 +91,11 @@ export const Blur = ({ isVisible, onClose }) => {
                             value={password} placeholder='Password' className='border border-gray-300 rounded-xl p-2.5 pl-5 w-full'/>
               </div>
               <div className='flex justify-center pt-1'>
+                <button>
                   <Button style={{backgroundColor: '#4264D0', borderRadius:'10px'}} variant="contained" startIcon={<GroupAddIcon />}>
                     Add
                   </Button>
-                
+                  </button>
               </div>
             </form>
           </div>

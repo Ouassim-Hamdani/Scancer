@@ -1,8 +1,9 @@
 import saveIcon from "../../assets/saveIcon.svg"
 //import { patientsList } from "../../constants/constants"
 import { useState ,useEffect} from 'react'
+import { useAuthContext } from '../../hooks/useAuthContext'
 export const SaveScan = () => {
-    
+  const { user } = useAuthContext()
     const [file, setFile] = useState('')
     const [comment, setComment] = useState('')
     const [patient, setPatient] = useState('')

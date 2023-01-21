@@ -2,7 +2,7 @@ from keras.models import load_model
 import imutils
 import cv2
 import numpy as np
-
+import sys
 def crop_brain_contour(image):
     
     # Convert the image to grayscale, and blur it slightly
@@ -44,3 +44,8 @@ def predictCancer(imageBin,ext="png"):
     if (prediction[0][0]>0.5):
         return True
     return False
+
+try:
+    predictCancer(sys.argv[1],sys.argv[2])
+except:
+    raise AttributeError("Not sufficant arguments!")
