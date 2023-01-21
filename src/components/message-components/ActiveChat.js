@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Message } from "./Message"
 import { ChatInput } from "./ChatInput";
 
-export const ActiveChat = ({id}) => {
+export const ActiveChat = ({name,id}) => {
     console.log(id);
     let [msgsHistory,setMsgsHistory] = useState([{role:"rec",time:"15:02",msg:"It turned into something bigger!",id:1},
     {role:"sender",time:"15:02",msg:"Somewhere in the haze got a sense I'd been betrayed!",id:2},
@@ -20,7 +20,7 @@ export const ActiveChat = ({id}) => {
         <div className="w-full flex flex-row space-x-6 items-center p-4 ">
             <img src={require("../../assets/avatar.png")} className='w-14 h-14 rounded-full' alt="" />
             <div className="flex flex-col">
-                        <span className="text-gray-800 font-semibold text-xl">Taylor Swift</span>
+                        <span className="text-gray-800 font-semibold text-xl">{name}</span>
                         <span className="text-gray-400">Online</span>
             </div>
 
