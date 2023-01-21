@@ -8,7 +8,9 @@ const{
     getOneScan,
     deleteScan,
     updateScan,
-    getScanForModel
+    getScanForModel,
+    scanResult,
+
 }=require('../controllers/scanController');
 
 
@@ -23,6 +25,7 @@ router.get('/',getScans)
 
 //get one scan 
 router.get('/:id',getOneScan)
+
 
 //create a scan
 router.post('/', setupUploader().single("file"),(req, res)=>{createScan(req, res);console.log(req, res)})

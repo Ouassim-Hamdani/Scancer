@@ -1,8 +1,9 @@
 import saveIcon from "../../assets/saveIcon.svg"
 //import { patientsList } from "../../constants/constants"
 import { useState ,useEffect} from 'react'
+import { useAuthContext } from '../../hooks/useAuthContext'
 export const SaveScan = () => {
-    
+  const { user } = useAuthContext()
     const [file, setFile] = useState('')
     const [comment, setComment] = useState('')
     const [patient, setPatient] = useState('')
@@ -11,7 +12,8 @@ export const SaveScan = () => {
 
   useEffect(() => {
     const fetchPatients = async () => {
-      const response = await fetch('http://localhost:5000/api/patients')
+      const response = await fetch('http://localhost:5000/api/patients',{
+      headers:{'Authorization': `Bearer ${user.token}`}})
       const json = await response.json()
 
       if (response.ok) {
