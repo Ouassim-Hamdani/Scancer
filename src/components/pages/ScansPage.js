@@ -4,6 +4,8 @@ import {Box} from '@mui/material';
 import {Blur} from '../Blur';
 import { Fragment } from "react";
 import {useState ,useEffect} from "react";
+import avatar from "../../assets/avatar.jpg"
+
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import Button from '@mui/material/Button';
 import moment from 'moment';
@@ -47,7 +49,7 @@ const columns = [
   renderCell: (params)=>{
     return (
       <div className='flex items-left'>
-        <img className='object-cover w-8 h-8 rounded-full mr-3' src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="" />
+        <img className='object-cover w-8 h-8 rounded-full mr-3' src={avatar} alt="" />
    
         {params.row.patient&& params.row.patient.firstName+' '+params.row.patient.familyName}
       </div>
@@ -90,7 +92,7 @@ const columns = [
       else if (params.row.status === 'Healthy'){
         return (
           <div className=''>
-            <p className='text-[#0d894d] border w-28 py-1 px-8 rounded-xl bg-[#66f08d]' >Healthy</p>
+            <p className='text-[#50b885] border w-28 py-1 px-8 rounded-xl bg-[#66f08d]' >Healthy</p>
           </div>
         )
       }

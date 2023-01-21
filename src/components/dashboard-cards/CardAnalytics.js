@@ -21,7 +21,6 @@ export const CardAnalytics = () => {
                 <span className="text-gray-800 font-semibold text-lg">Analytics</span>
                 <div className='flex flex-row space-x-1 items-center '>
                     <span className="text-gray-500 text-md">This Week</span>
-                    <img src={dateExpand} alt="" />
                 </div>
                 
             </div>

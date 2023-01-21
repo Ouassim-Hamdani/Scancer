@@ -2,7 +2,8 @@ import {NavBar} from "../NavBar"
 import {SideBar} from "../SideBar"
 import saveIcon from "../../assets/saveIcon.svg"
 import fileIcon from "../../assets/file.svg"
-import avatar from "../../assets/avatar.png"
+import avatar from "../../assets/avatar.jpg"
+
 import "flowbite"
 export const PatientPage = () => {
   return (

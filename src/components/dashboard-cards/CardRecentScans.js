@@ -1,4 +1,4 @@
-
+import avatar from "../../assets/avatar.jpg"
 export const CardRecentScans = () => {
      const genderData = [
         { name: 'Female', value: 35,quantity:40 },
@@ -19,10 +19,10 @@ export const CardRecentScans = () => {
                     <li className="w-full">
                         <div className="flex justify-start items-center space-x-1 w-full">
                             <span className="text-xs w-16 text-gray-600 ">11:59 pm</span>
-                            <div className="flex justify-start bg-gray-300 w-550 rounded-lg py-1 w-full hover:bg-primary hover:text-white">
+                            <div className="flex justify-start bg-gray-300 w-550 rounded-lg py-1 w-full transition-all hover:bg-primary text-gray-800 hover:text-white">
                                 <div className="flex flex-row justify-start space-x-4 items-center w-full">
-                                    <img src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" className="object-cover w-9 h-9 rounded-full ml-4" />
-                                    <span className=" text-gray-800">Anna Keller</span>
+                                    <img src={avatar} className="object-cover w-9 h-9 rounded-full ml-4" />
+                                    <span>Sami Krim</span>
                                 </div>
                             </div>
                             
@@ -32,10 +32,10 @@ export const CardRecentScans = () => {
                     <li className="w-full">
                         <div className="flex justify-start items-center space-x-1 w-full">
                             <span className="text-xs w-16 text-gray-600 ">11:59 pm</span>
-                            <div className="flex justify-start bg-gray-300 w-550 rounded-lg py-1 w-full hover:bg-primary hover:text-white">
+                            <div className="flex justify-start bg-gray-300 w-550 rounded-lg py-1 w-full transition-all hover:bg-primary text-gray-800  hover:text-white">
                                 <div className="flex flex-row justify-start space-x-4 items-center w-full">
-                                    <img src="https://images.pexels.com/photos/3992656/pexels-photo-3992656.png?auto=compress&cs=tinysrgb&dpr=2&w=500" className="object-cover w-9 h-9 rounded-full ml-4" />
-                                    <span className=" text-gray-800">Anna Keller</span>
+                                    <img src={avatar} className="object-cover w-9 h-9 rounded-full ml-4" />
+                                    <span className="">Anna Keller</span>
                                 </div>
                             </div>
                             
