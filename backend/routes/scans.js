@@ -28,7 +28,7 @@ router.get('/:id',getOneScan)
 
 
 //create a scan
-router.post('/', setupUploader().single("file"),(req, res)=>{createScan(req, res);console.log(req, res)})
+router.post('/', setupUploader().single("file"),(req, res)=>{createScan(req, res)})
 
 //delete a scan
 router.delete('/:id',deleteScan)
@@ -38,6 +38,6 @@ router.patch('/:id',updateScan)
 
 //this was for experimenting
 
-//router.get("/process/:id", getScanForModel)
+router.get("/process/:id", getScanForModel)
 
 module.exports=router  

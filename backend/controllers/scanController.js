@@ -1,6 +1,6 @@
 const Doctor =require('../models/DoctorModel');
 const Patient =require('../models/PatientModel');
-const {spawn} = require('child_process');
+const {spawn,exec} = require('child_process');
 const mongoose = require('mongoose');
 
 const grid = require("gridfs-stream");
@@ -41,29 +41,20 @@ const setupUploader = ()=>{
 const scanResult =async (req,res)=>{
     const {file,type}=req.body
    
-    const pyProg = spawn('python', ['./runAi.py',file,type]);
-
-    pyProg.stdout.on('data', function(data) {
-
-        console.log(data.toString());
-        res.write(data);
-        res.end('end');
-    });
+ 
     
     
       res.status(200).json();
 }
 //create scan
 const createScan= async (req,res)=>{
+    const {file}=req.body
 
-    const {result,file,comment,patient}=req.body
-    
-    try{  
-        const scan=await Doctor.updateOne({_id:req.user._id},{ $push: { scans: {patient:patient,result: result ,file:req.file.id,comment:comment}}})
-        console.log(req.user._id);
-        console.log(req.user);
+    try{ 
+        const scan=await Doctor.updateOne({_id:req.user._id},{ $push: { scans: {file:req.file.id}}})
+        
 
-        res.status(200).json(scan)
+        res.status(200).json(req.file.id)
     }catch(err){
         res.status(400).json({msg:err.message})
     }
@@ -122,7 +113,21 @@ const getScanForModel =  (req, res) =>{
         filetype : fls.contentType,
         data: Buffer.concat(chunks).toString(undefined)
     }
-    //res.json(ModelInput);
+
+    const pyProg = exec('cd controllers && D:/python/Scripts/activate && D:/python/python.exe runAi.py '+ModelInput.data+"         "+ModelInput.filetype, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`error: ${error.message}`);
+          return;
+        }
+      
+        if (stderr) {
+          console.error(`stderr: ${stderr}`);
+          return;
+        }
+      
+        console.log(`stdout:\n${stdout}`);
+      });
+    
     });
     });
 }

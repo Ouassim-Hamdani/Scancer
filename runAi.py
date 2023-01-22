@@ -28,10 +28,9 @@ def crop_brain_contour(image):
     
     return new_image
 
-model = load_model("D:\project bdd\Scancer\\backend\controllers\model.h5")
+model = load_model("model.h5")
 def predictCancer(imageBin,ext="png"):
-
-    with open("tempImg."+ext.split("/")[1],"wb") as img:
+    with open("tempImg."+ext,"wb") as img:
         img.write(imageBin)
     img_width, img_height = (240, 240)
     image = cv2.imread("tempImg."+ext)
@@ -51,5 +50,8 @@ def predictCancer(imageBin,ext="png"):
     print(a)
     sys.stdout.flush()
     return False
-print(sys.argv)
-predictCancer(sys.argv[1],sys.argv[2])
+
+try:
+    predictCancer(sys.argv[1],sys.argv[2])
+except:
+    raise AttributeError("Not sufficant arguments!")
