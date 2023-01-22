@@ -11,7 +11,7 @@ function createWindow() {
         width: 1920 ,
         height: 1200,
         title:"Scancer",
-        icon: __dirname + '/logo.svg',
+        icon: __dirname + '/logo.png',
         webPreferences: {
             nodeIntegration: true
         }

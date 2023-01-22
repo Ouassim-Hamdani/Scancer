@@ -1,3 +1,4 @@
+
 import scanCancer from "../../assets/cancer.png"
 import processIcon from "../../assets/process.svg"
 import { useAuthContext } from '../../hooks/useAuthContext'

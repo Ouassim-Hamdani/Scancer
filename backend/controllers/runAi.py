@@ -1,3 +1,4 @@
+
 from keras.models import load_model
 import imutils
 import cv2
@@ -51,5 +52,3 @@ def predictCancer(imageBin,ext="png"):
     print(a)
     sys.stdout.flush()
     return False
-print(sys.argv)
-predictCancer(sys.argv[1],sys.argv[2])
