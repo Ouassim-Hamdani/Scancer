@@ -55,7 +55,6 @@ const PatientSchema = new Schema({
 // static create an account method
 PatientSchema.statics.signup = async function(password,firstName,familyName,gender,contacts,birthDate,status) {
   // validation
-  console.log(contacts.email)
   if (!contacts.email || !password) { 
     throw Error('You must fill the email and the password field')
   }
