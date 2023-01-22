@@ -20,7 +20,7 @@
           setHeight(ref.current.clientHeight)
           setWidth(ref.current.clientWidth)
           const fetchData= async () => {
-            const response = await fetch('http://localhost:5000/api/dashboard',{
+            const response = await fetch('http://localhost:5000/api/dashboard/getGender',{
               headers: {'Authorization': `Bearer ${user.token}`},
             })
             const json = await response.json()

@@ -9,7 +9,7 @@ import { SaveScan } from '../scan_component/SaveScan';
 import { Notification } from '../scan_component/Notification';
 let states = {uploading:{container:"h-5/6", smallContainer:"h-2/3"},processResult:{container:"h-5/6", smallContainer:"h-5/6"}}
 export const Scan = () => {
-  let [step,setStep] = useState(2)
+  let [step,setStep] = useState(0)
   const showComp = () => {
     switch(step) {
       case 0:

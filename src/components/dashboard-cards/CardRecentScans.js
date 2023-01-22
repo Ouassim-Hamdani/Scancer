@@ -1,4 +1,10 @@
+
 export const CardRecentScans = () => {
+     const genderData = [
+        { name: 'Female', value: 35,quantity:40 },
+        { name: 'Male', value: 65,quantity:102 },
+      ]
+      
     return (
         <div className="px-6 py-6 z-50 rounded-2xl space-y-3 shadow-xl border-gray-200 border col-span-2 row-span-1 ">
             <div className="flex flex-row justify-between items-center">
